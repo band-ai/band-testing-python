@@ -34,7 +34,7 @@ dev = [
     "band-testing-python[full]",
     "ruff>=0.1.0",
     "pyrefly>=0.1.0",
-    "pre-commit>=3.0.0",
+    "pre-commit>=4.6.0",
 ]
 
 [project.entry-points.pytest11]
