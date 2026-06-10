@@ -1,7 +1,7 @@
-"""Pytest fixtures for Thenvoi testing.
+"""Pytest fixtures for Band testing.
 
 This module provides pytest fixtures that are automatically registered
-when thenvoi-testing-python is installed (via pytest plugin entry point).
+when band-testing-python is installed (via pytest plugin entry point).
 
 Core fixtures (always available):
 - fake_agent_tools: FakeAgentTools instance for testing adapters
@@ -14,7 +14,7 @@ Mock API client fixtures (for unit tests):
 - mock_api_client: AsyncMock with both APIs attached
 
 Real API client fixtures (for integration tests):
-- api_client: Real RestClient (requires thenvoi-client-rest, returns None if no API key)
+- api_client: Real RestClient (requires band-client-rest, returns None if no API key)
 
 Sample message fixtures:
 - sample_room_message: MessageCreatedPayload from a user
@@ -48,17 +48,17 @@ from unittest.mock import AsyncMock
 
 import pytest
 
-from thenvoi_testing.factories import factory as _factory
-from thenvoi_testing.fakes import FakeAgentTools
+from band_testing.factories import factory as _factory
+from band_testing.fakes import FakeAgentTools
 
 # Import API client fixtures - they will be auto-registered by pytest
-from thenvoi_testing.fixtures.api_clients import (  # noqa: F401
+from band_testing.fixtures.api_clients import (  # noqa: F401
     api_client,
     mock_agent_api,
     mock_api_client,
     mock_human_api,
 )
-from thenvoi_testing.streaming import (
+from band_testing.streaming import (
     Mention,
     MessageCreatedPayload,
     MessageMetadata,

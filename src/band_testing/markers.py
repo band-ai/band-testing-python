@@ -3,10 +3,10 @@
 Provides reusable skip marker factories for common test patterns.
 
 Usage:
-    from thenvoi_testing.markers import skip_without_env, skip_in_ci
+    from band_testing.markers import skip_without_env, skip_in_ci
 
     # Skip if environment variable not set
-    requires_api = skip_without_env("THENVOI_API_KEY", "API key not set")
+    requires_api = skip_without_env("BAND_API_KEY", "API key not set")
 
     @requires_api
     def test_api_call():
@@ -37,7 +37,7 @@ def skip_without_env(env_var: str, reason: str | None = None) -> pytest.MarkDeco
         A pytest.mark.skipif decorator.
 
     Example:
-        requires_api = skip_without_env("THENVOI_API_KEY")
+        requires_api = skip_without_env("BAND_API_KEY")
 
         @requires_api
         def test_needs_api():
@@ -63,7 +63,7 @@ def skip_without_envs(
 
     Example:
         requires_multi_agent = skip_without_envs(
-            ["THENVOI_API_KEY", "THENVOI_API_KEY_2"],
+            ["BAND_API_KEY", "BAND_API_KEY_2"],
             reason="Both API keys required for multi-agent tests"
         )
     """
@@ -113,7 +113,7 @@ def pytest_ignore_collect_in_ci(
     Add this to your conftest.py:
 
         def pytest_ignore_collect(collection_path):
-            from thenvoi_testing.markers import pytest_ignore_collect_in_ci
+            from band_testing.markers import pytest_ignore_collect_in_ci
             return pytest_ignore_collect_in_ci(str(collection_path), "integration")
 
     Args:

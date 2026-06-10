@@ -1,10 +1,10 @@
 [project]
-name = "thenvoi-testing-python"
+name = "band-testing-python"
 version = "0.1.4"
-description = "Shared Python testing utilities for Thenvoi repositories - fixtures, factories, and fakes"
+description = "Shared Python testing utilities for Band repositories - fixtures, factories, and fakes"
 readme = "README.md"
 license = "MIT"
-authors = [{ name = "Thenvoi" }]
+authors = [{ name = "Band" }]
 requires-python = ">=3.11"
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -23,32 +23,32 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# For repos using thenvoi_rest client (integration tests)
-rest = ["thenvoi-client-rest==0.0.7"]
+# For repos using band_rest client (integration tests)
+rest = ["band-client-rest==0.0.9"]
 # For repos using WebSocket testing
 websocket = ["websockets>=12.0"]
 # Full installation
-full = ["thenvoi-testing-python[rest,websocket]"]
+full = ["band-testing-python[rest,websocket]"]
 # Development
 dev = [
-    "thenvoi-testing-python[full]",
+    "band-testing-python[full]",
     "ruff>=0.1.0",
     "pyrefly>=0.1.0",
     "pre-commit>=3.0.0",
 ]
 
 [project.entry-points.pytest11]
-thenvoi_testing = "thenvoi_testing.fixtures"
+band_testing = "band_testing.fixtures"
 
 [project.urls]
-Repository = "https://github.com/thenvoi/thenvoi-testing-python"
+Repository = "https://github.com/band-ai/band-testing-python"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/thenvoi_testing"]
+packages = ["src/band_testing"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -63,4 +63,4 @@ target-version = "py311"
 select = ["E", "F", "I", "UP", "B"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["thenvoi_testing"]
+known-first-party = ["band_testing"]

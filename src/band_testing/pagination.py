@@ -1,10 +1,10 @@
-"""Pagination utilities for integration tests against Thenvoi APIs.
+"""Pagination utilities for integration tests against Band APIs.
 
 Provides helper functions for working with paginated API responses
 in integration tests.
 
 Usage:
-    from thenvoi_testing.pagination import fetch_all_pages, find_item_in_pages
+    from band_testing.pagination import fetch_all_pages, find_item_in_pages
 
     # Fetch all items from a paginated endpoint
     all_peers = fetch_all_pages(ctx, list_agent_peers)

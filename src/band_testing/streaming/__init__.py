@@ -1,10 +1,10 @@
 """Streaming payload types for WebSocket events.
 
 This module provides Pydantic models for WebSocket event payloads.
-These are the same types used by thenvoi-sdk-python's streaming module.
+These are the same types used by band-sdk-python's streaming module.
 
 Usage:
-    from thenvoi_testing.streaming import (
+    from band_testing.streaming import (
         MessageCreatedPayload,
         RoomAddedPayload,
         MessageMetadata,

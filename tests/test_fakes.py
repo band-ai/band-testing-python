@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from thenvoi_testing.fakes import FakeAgentTools
+from band_testing.fakes import FakeAgentTools
 
 
 class TestFakeAgentTools:

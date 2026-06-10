@@ -1,4 +1,4 @@
-"""Shared Python testing utilities for Thenvoi repositories.
+"""Shared Python testing utilities for Band repositories.
 
 This package provides:
 - factories: Mock data factories for creating test objects
@@ -11,20 +11,20 @@ This package provides:
 
 Usage:
     # In your conftest.py (fixtures auto-registered via pytest plugin)
-    pytest_plugins = ["thenvoi_testing.fixtures"]
+    pytest_plugins = ["band_testing.fixtures"]
 
     # In your tests
-    from thenvoi_testing.factories import factory
-    from thenvoi_testing.factories.events import make_message_event
-    from thenvoi_testing.fakes import FakeAgentTools
-    from thenvoi_testing.markers import requires_api
-    from thenvoi_testing.pagination import fetch_all_pages, find_item_in_pages
-    from thenvoi_testing.streaming import MessageCreatedPayload
+    from band_testing.factories import factory
+    from band_testing.factories.events import make_message_event
+    from band_testing.fakes import FakeAgentTools
+    from band_testing.markers import requires_api
+    from band_testing.pagination import fetch_all_pages, find_item_in_pages
+    from band_testing.streaming import MessageCreatedPayload
 """
 
 from __future__ import annotations
 
-from thenvoi_testing.pagination import (
+from band_testing.pagination import (
     fetch_all_pages,
     find_item_in_pages,
     item_exists_in_pages,

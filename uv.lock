@@ -25,6 +25,67 @@ wheels = [
 ]
 
 [[package]]
+name = "band-client-rest"
+version = "0.0.9"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "httpx" },
+    { name = "pydantic" },
+    { name = "pydantic-core" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f0/75/0733ce1e35080c1d8825c7caa7d3e4da3eafa5dc2172a03aed7e57d0aa2b/band_client_rest-0.0.9.tar.gz", hash = "sha256:dba3a36499b8e5a4de9031429e76f1e85384d044fe96d6602845b15ccf20554b", size = 67233, upload-time = "2026-06-10T11:08:59.069Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b3/ab/0c2850d0d063ddbf0b94966f862f4c739e509f8095a9b687af8b30b23081/band_client_rest-0.0.9-py3-none-any.whl", hash = "sha256:7f28245b56a170fb0262391156ffdfbf22f62ef9991347911870400369c1e7bd", size = 141761, upload-time = "2026-06-10T11:08:57.88Z" },
+]
+
+[[package]]
+name = "band-testing-python"
+version = "0.1.4"
+source = { editable = "." }
+dependencies = [
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "band-client-rest" },
+    { name = "pre-commit" },
+    { name = "pyrefly" },
+    { name = "ruff" },
+    { name = "websockets" },
+]
+full = [
+    { name = "band-client-rest" },
+    { name = "websockets" },
+]
+rest = [
+    { name = "band-client-rest" },
+]
+websocket = [
+    { name = "websockets" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "band-client-rest", marker = "extra == 'rest'", specifier = "==0.0.9" },
+    { name = "band-testing-python", extras = ["full"], marker = "extra == 'dev'" },
+    { name = "band-testing-python", extras = ["rest", "websocket"], marker = "extra == 'full'" },
+    { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=3.0.0" },
+    { name = "pydantic", specifier = ">=2.0.0" },
+    { name = "pydantic-settings", specifier = ">=2.0.0" },
+    { name = "pyrefly", marker = "extra == 'dev'", specifier = ">=0.1.0" },
+    { name = "pytest", specifier = ">=7.0.0" },
+    { name = "pytest-asyncio", specifier = ">=0.21.0" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
+    { name = "websockets", marker = "extra == 'websocket'", specifier = ">=12.0" },
+]
+provides-extras = ["rest", "websocket", "full", "dev"]
+
+[[package]]
 name = "certifi"
 version = "2026.1.4"
 source = { registry = "https://pypi.org/simple" }
@@ -454,67 +515,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/87/44/90fa543014c45560cae1fffc63ea059fb3575ee6e1cb654562197e5d16fb/ruff-0.14.14-py3-none-win_amd64.whl", hash = "sha256:3dde1435e6b6fe5b66506c1dff67a421d0b7f6488d466f651c07f4cab3bf20fd", size = 11630486, upload-time = "2026-01-22T22:30:10.852Z" },
     { url = "https://files.pythonhosted.org/packages/9e/6a/40fee331a52339926a92e17ae748827270b288a35ef4a15c9c8f2ec54715/ruff-0.14.14-py3-none-win_arm64.whl", hash = "sha256:56e6981a98b13a32236a72a8da421d7839221fa308b223b9283312312e5ac76c", size = 10920448, upload-time = "2026-01-22T22:30:15.417Z" },
 ]
-
-[[package]]
-name = "thenvoi-client-rest"
-version = "0.0.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "httpx" },
-    { name = "pydantic" },
-    { name = "pydantic-core" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/6e/92/5f01c144cb93f2da79c05901c855f5de5e6b4e81b45ac376cc141228e870/thenvoi_client_rest-0.0.2.tar.gz", hash = "sha256:746208f5589125f4f5547289fab709b95346899841214817910479350ca686d3", size = 63061, upload-time = "2025-12-29T09:15:52.928Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/f6/03/fc740e1fefec2c7d3897237c1d7155c5128a5cf776ef41b31e32a65cf2a1/thenvoi_client_rest-0.0.2-py3-none-any.whl", hash = "sha256:f693a6c9625f41b7934091da0287d19a0e9d9258501cdbb4a6b3bc41c0f64acc", size = 120085, upload-time = "2025-12-29T09:15:51.861Z" },
-]
-
-[[package]]
-name = "thenvoi-testing-python"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "pydantic" },
-    { name = "pydantic-settings" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-]
-
-[package.optional-dependencies]
-dev = [
-    { name = "pre-commit" },
-    { name = "pyrefly" },
-    { name = "ruff" },
-    { name = "thenvoi-client-rest" },
-    { name = "websockets" },
-]
-full = [
-    { name = "thenvoi-client-rest" },
-    { name = "websockets" },
-]
-rest = [
-    { name = "thenvoi-client-rest" },
-]
-websocket = [
-    { name = "websockets" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=3.0.0" },
-    { name = "pydantic", specifier = ">=2.0.0" },
-    { name = "pydantic-settings", specifier = ">=2.0.0" },
-    { name = "pyrefly", marker = "extra == 'dev'", specifier = ">=0.1.0" },
-    { name = "pytest", specifier = ">=7.0.0" },
-    { name = "pytest-asyncio", specifier = ">=0.21.0" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
-    { name = "thenvoi-client-rest", marker = "extra == 'rest'", specifier = "==0.0.2" },
-    { name = "thenvoi-testing-python", extras = ["full"], marker = "extra == 'dev'" },
-    { name = "thenvoi-testing-python", extras = ["rest", "websocket"], marker = "extra == 'full'" },
-    { name = "websockets", marker = "extra == 'websocket'", specifier = ">=12.0" },
-]
-provides-extras = ["rest", "websocket", "full", "dev"]
 
 [[package]]
 name = "typing-extensions"

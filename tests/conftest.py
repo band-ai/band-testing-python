@@ -1,6 +1,6 @@
-"""Pytest configuration for thenvoi-testing-python tests.
+"""Pytest configuration for band-testing-python tests.
 
-Note: The fixtures from thenvoi_testing.fixtures are automatically
+Note: The fixtures from band_testing.fixtures are automatically
 registered via the pytest plugin entry point in pyproject.toml.
 """
 

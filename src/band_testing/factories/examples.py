@@ -1,7 +1,7 @@
 """OpenAPI examples extracted from the spec.
 
 These are default values used by the mock data factory.
-Based on the Thenvoi API OpenAPI specification.
+Based on the Band API OpenAPI specification.
 """
 
 from __future__ import annotations

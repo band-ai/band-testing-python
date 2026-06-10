@@ -4,7 +4,7 @@ Provides a base TestSettings class using Pydantic Settings for
 loading test configuration from .env.test files.
 
 Usage:
-    from thenvoi_testing.settings import BaseTestSettings
+    from band_testing.settings import BaseTestSettings
 
     class MyTestSettings(BaseTestSettings):
         my_api_key: str = ""
@@ -30,15 +30,15 @@ class BaseTestSettings(BaseSettings):
     Example:
         class TestSettings(BaseTestSettings):
             # Primary credentials
-            thenvoi_api_key: str = ""
+            BAND_API_KEY: str = ""
             test_agent_id: str = ""
 
             # Server URLs
-            thenvoi_base_url: str = "http://localhost:4000"
+            BAND_BASE_URL: str = "http://localhost:4000"
 
         settings = TestSettings()
-        if settings.thenvoi_api_key:
-            client = create_client(settings.thenvoi_api_key)
+        if settings.BAND_API_KEY:
+            client = create_client(settings.BAND_API_KEY)
 
     Attributes:
         model_config: Pydantic settings configuration.
@@ -60,53 +60,53 @@ class BaseTestSettings(BaseSettings):
         super().__init__(**kwargs)
 
 
-class ThenvoiTestSettings(BaseTestSettings):
-    """Standard Thenvoi test settings for integration tests.
+class BandTestSettings(BaseTestSettings):
+    """Standard Band test settings for integration tests.
 
-    This provides common settings used across Thenvoi repositories.
+    This provides common settings used across Band repositories.
     Load from .env.test in your tests directory.
 
     Example .env.test:
-        THENVOI_API_KEY=your-agent-api-key
+        BAND_API_KEY=your-agent-api-key
         TEST_AGENT_ID=your-agent-uuid
-        THENVOI_BASE_URL=https://api.thenvoi.com
-        THENVOI_WS_URL=wss://api.thenvoi.com/api/v1/socket/websocket
+        BAND_BASE_URL=https://api.band.ai
+        BAND_WS_URL=wss://api.band.ai/api/v1/socket/websocket
 
     Usage:
-        from thenvoi_testing.settings import ThenvoiTestSettings
+        from band_testing.settings import BandTestSettings
 
-        class TestSettings(ThenvoiTestSettings):
+        class TestSettings(BandTestSettings):
             _env_file_path = Path(__file__).parent / ".env.test"
 
         settings = TestSettings()
     """
 
     # Primary agent credentials
-    thenvoi_api_key: str = ""
+    BAND_API_KEY: str = ""
     test_agent_id: str = ""
 
     # Secondary agent credentials (for multi-agent tests)
-    thenvoi_api_key_2: str = ""
+    BAND_API_KEY_2: str = ""
     test_agent_id_2: str = ""
 
     # User API key (for user operations like registering agents)
-    thenvoi_api_key_user: str = ""
+    BAND_API_KEY_user: str = ""
 
     # Server URLs
-    thenvoi_base_url: str = "http://localhost:4000"
-    thenvoi_ws_url: str = "ws://localhost:4000/api/v1/socket/websocket"
+    BAND_BASE_URL: str = "http://localhost:4000"
+    BAND_WS_URL: str = "ws://localhost:4000/api/v1/socket/websocket"
 
     @property
     def has_api_key(self) -> bool:
         """Check if primary API key is configured."""
-        return bool(self.thenvoi_api_key)
+        return bool(self.BAND_API_KEY)
 
     @property
     def has_multi_agent(self) -> bool:
         """Check if both agent API keys are configured."""
-        return bool(self.thenvoi_api_key and self.thenvoi_api_key_2)
+        return bool(self.BAND_API_KEY and self.BAND_API_KEY_2)
 
     @property
     def has_user_api(self) -> bool:
         """Check if user API key is configured."""
-        return bool(self.thenvoi_api_key_user)
+        return bool(self.BAND_API_KEY_user)

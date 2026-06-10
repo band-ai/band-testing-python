@@ -1,1 +1,1 @@
-"""Tests for thenvoi-testing-python package."""
+"""Tests for band-testing-python package."""

@@ -4,7 +4,7 @@ Provides functions for creating event objects used in WebSocket
 message handling tests.
 
 Usage:
-    from thenvoi_testing.factories.events import (
+    from band_testing.factories.events import (
         make_message_event,
         make_room_added_event,
         make_participant_added_event,
@@ -28,7 +28,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Literal
 
-from thenvoi_testing.streaming import (
+from band_testing.streaming import (
     MessageCreatedPayload,
     MessageMetadata,
     ParticipantAddedPayload,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from thenvoi_testing.factories.events import (
+from band_testing.factories.events import (
     MessageEvent,
     ParticipantAddedEvent,
     ParticipantRemovedEvent,
@@ -14,7 +14,7 @@ from thenvoi_testing.factories.events import (
     make_room_added_event,
     make_room_removed_event,
 )
-from thenvoi_testing.streaming import (
+from band_testing.streaming import (
     Mention,
     MessageCreatedPayload,
     MessageMetadata,

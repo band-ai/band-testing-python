@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from unittest.mock import patch
 
-from thenvoi_testing.settings import BaseTestSettings, ThenvoiTestSettings
+from band_testing.settings import BandTestSettings, BaseTestSettings
 
 
 class TestBaseTestSettings:
@@ -42,48 +42,48 @@ class TestBaseTestSettings:
             assert settings.my_api_key == "secret"
 
 
-class TestThenvoiTestSettings:
-    """Tests for ThenvoiTestSettings class."""
+class TestBandTestSettings:
+    """Tests for BandTestSettings class."""
 
     def test_default_values(self) -> None:
         """Should have sensible defaults."""
         with patch.dict(os.environ, {}, clear=True):
-            settings = ThenvoiTestSettings()
-            assert settings.thenvoi_api_key == ""
-            assert settings.thenvoi_base_url == "http://localhost:4000"
-            assert "localhost:4000" in settings.thenvoi_ws_url
+            settings = BandTestSettings()
+            assert settings.BAND_API_KEY == ""
+            assert settings.BAND_BASE_URL == "http://localhost:4000"
+            assert "localhost:4000" in settings.BAND_WS_URL
 
     def test_has_api_key_property(self) -> None:
         """has_api_key should return True when key is set."""
-        with patch.dict(os.environ, {"THENVOI_API_KEY": "test-key"}):
-            settings = ThenvoiTestSettings()
+        with patch.dict(os.environ, {"BAND_API_KEY": "test-key"}):
+            settings = BandTestSettings()
             assert settings.has_api_key is True
 
         with patch.dict(os.environ, {}, clear=True):
-            settings = ThenvoiTestSettings()
+            settings = BandTestSettings()
             assert settings.has_api_key is False
 
     def test_has_multi_agent_property(self) -> None:
         """has_multi_agent should require both keys."""
         with patch.dict(
             os.environ,
-            {"THENVOI_API_KEY": "key1", "THENVOI_API_KEY_2": "key2"},
+            {"BAND_API_KEY": "key1", "BAND_API_KEY_2": "key2"},
         ):
-            settings = ThenvoiTestSettings()
+            settings = BandTestSettings()
             assert settings.has_multi_agent is True
 
-        with patch.dict(os.environ, {"THENVOI_API_KEY": "key1"}):
-            settings = ThenvoiTestSettings()
+        with patch.dict(os.environ, {"BAND_API_KEY": "key1"}):
+            settings = BandTestSettings()
             assert settings.has_multi_agent is False
 
     def test_has_user_api_property(self) -> None:
         """has_user_api should check user API key."""
-        with patch.dict(os.environ, {"THENVOI_API_KEY_USER": "user-key"}):
-            settings = ThenvoiTestSettings()
+        with patch.dict(os.environ, {"BAND_API_KEY_USER": "user-key"}):
+            settings = BandTestSettings()
             assert settings.has_user_api is True
 
         with patch.dict(os.environ, {}, clear=True):
-            settings = ThenvoiTestSettings()
+            settings = BandTestSettings()
             assert settings.has_user_api is False
 
     def test_override_from_env(self) -> None:
@@ -91,12 +91,12 @@ class TestThenvoiTestSettings:
         with patch.dict(
             os.environ,
             {
-                "THENVOI_API_KEY": "api-key-1",
+                "BAND_API_KEY": "api-key-1",
                 "TEST_AGENT_ID": "agent-123",
-                "THENVOI_BASE_URL": "https://api.thenvoi.com",
+                "BAND_BASE_URL": "https://api.band.ai",
             },
         ):
-            settings = ThenvoiTestSettings()
-            assert settings.thenvoi_api_key == "api-key-1"
+            settings = BandTestSettings()
+            assert settings.BAND_API_KEY == "api-key-1"
             assert settings.test_agent_id == "agent-123"
-            assert settings.thenvoi_base_url == "https://api.thenvoi.com"
+            assert settings.BAND_BASE_URL == "https://api.band.ai"

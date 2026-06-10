@@ -9,7 +9,7 @@ Mock fixtures (for unit tests):
 - mock_api_client: AsyncMock with both APIs attached
 
 Real client fixtures (for integration tests):
-- api_client: Real RestClient instance (requires thenvoi-client-rest)
+- api_client: Real RestClient instance (requires band-client-rest)
 """
 
 from __future__ import annotations
@@ -19,8 +19,8 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from thenvoi_testing.factories import factory
-from thenvoi_testing.settings import ThenvoiTestSettings
+from band_testing.factories import factory
+from band_testing.settings import BandTestSettings
 
 
 @pytest.fixture
@@ -180,11 +180,11 @@ def mock_api_client(mock_agent_api: MagicMock, mock_human_api: MagicMock) -> Asy
 def api_client() -> Any:
     """Create a real RestClient for integration tests.
 
-    Requires thenvoi-client-rest to be installed (via the 'rest' extra).
-    Returns None if THENVOI_API_KEY is not set, allowing tests to
+    Requires band-client-rest to be installed (via the 'rest' extra).
+    Returns None if BAND_API_KEY is not set, allowing tests to
     decide whether to skip.
 
-    Uses ThenvoiTestSettings to load configuration from environment
+    Uses BandTestSettings to load configuration from environment
     variables or .env.test file.
 
     Example:
@@ -197,7 +197,7 @@ def api_client() -> Any:
 
         # Or use with a marker
         @pytest.mark.skipif(
-            not os.environ.get("THENVOI_API_KEY"),
+            not os.environ.get("BAND_API_KEY"),
             reason="API key required"
         )
         def test_with_api(api_client):
@@ -206,20 +206,20 @@ def api_client() -> Any:
     Returns:
         RestClient instance or None if API key is not set
     """
-    settings = ThenvoiTestSettings()
+    settings = BandTestSettings()
 
     if not settings.has_api_key:
         return None
 
     try:
-        from thenvoi_rest import RestClient
+        from band_rest import RestClient
     except ImportError as err:
         raise ImportError(
-            "thenvoi-client-rest is required for api_client fixture. "
-            "Install with: pip install thenvoi-testing-python[rest]"
+            "band-client-rest is required for api_client fixture. "
+            "Install with: pip install band-testing-python[rest]"
         ) from err
 
     return RestClient(
-        api_key=settings.thenvoi_api_key,
-        base_url=settings.thenvoi_base_url,
+        api_key=settings.BAND_API_KEY,
+        base_url=settings.BAND_BASE_URL,
     )

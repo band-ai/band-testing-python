@@ -1,7 +1,7 @@
 """Fake Phoenix WebSocket server for testing.
 
 Requires the websocket optional dependency:
-    uv add --dev "thenvoi-testing-python[websocket]"
+    uv add --dev "band-testing-python[websocket]"
 """
 
 from __future__ import annotations

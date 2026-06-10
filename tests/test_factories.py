@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import UTC
 
-from thenvoi_testing.factories import (
+from band_testing.factories import (
     factory,
     make_pydantic_mock,
     make_timestamp,

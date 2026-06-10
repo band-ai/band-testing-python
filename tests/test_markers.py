@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 import pytest
 
-from thenvoi_testing.markers import (
+from band_testing.markers import (
     pytest_ignore_collect_in_ci,
     skip_with_condition,
     skip_without_env,

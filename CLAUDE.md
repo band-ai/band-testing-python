@@ -1,11 +1,11 @@
-# Thenvoi Testing Python
+# Band Testing Python
 
-Shared Python testing utilities for Thenvoi repositories. Provides fixtures, factories, and fakes for testing adapters, WebSocket clients, and API integrations.
+Shared Python testing utilities for Band repositories. Provides fixtures, factories, and fakes for testing adapters, WebSocket clients, and API integrations.
 
 ## Code Structure
 
 ```
-src/thenvoi_testing/
+src/band_testing/
 ├── factories/      # Mock data factories (MockDataFactory, events)
 ├── fakes/          # Fake implementations (FakeAgentTools, FakePhoenixServer)
 ├── fixtures/       # Pytest plugin with auto-registered fixtures
@@ -42,7 +42,7 @@ uv run pytest tests/ -v
 uv run pytest tests/ -k "test_name"
 
 # Run with coverage
-uv run pytest tests/ --cov=src/thenvoi_testing
+uv run pytest tests/ --cov=src/band_testing
 
 # Linting and formatting
 uv run ruff check .
@@ -53,13 +53,13 @@ uv run ruff format .
 
 ```bash
 # From PyPI
-uv add thenvoi-testing-python
+uv add band-testing-python
 
 # With specific extras
-uv add "thenvoi-testing-python[websocket]"
+uv add "band-testing-python[websocket]"
 
 # Pin to version
-uv add "thenvoi-testing-python==0.1.1"
+uv add "band-testing-python==0.1.1"
 ```
 
 ## Branching & Releases

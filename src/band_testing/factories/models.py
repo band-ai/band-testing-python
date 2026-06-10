@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Any
 from unittest.mock import Mock
 
-from thenvoi_testing.factories.base import make_pydantic_mock
-from thenvoi_testing.factories.examples import (
+from band_testing.factories.base import make_pydantic_mock
+from band_testing.factories.examples import (
     AGENTME,
     CHATEVENT,
     CHATMESSAGE,
@@ -24,7 +24,7 @@ class MockDataFactory:
     """Factory for creating mock SDK response objects.
 
     Usage:
-        from thenvoi_testing.factories import factory
+        from band_testing.factories import factory
 
         agent = factory.agent_me(id="agent-123", name="TestBot")
         response = factory.response(agent)

@@ -4,7 +4,7 @@ This module provides fake implementations that can be used
 instead of mocking frameworks for cleaner, more maintainable tests.
 
 Usage:
-    from thenvoi_testing.fakes import FakeAgentTools, FakePhoenixServer
+    from band_testing.fakes import FakeAgentTools, FakePhoenixServer
 
     async def test_adapter():
         tools = FakeAgentTools()
@@ -14,7 +14,7 @@ Usage:
 
 from __future__ import annotations
 
-from thenvoi_testing.fakes.agent_tools import FakeAgentTools
+from band_testing.fakes.agent_tools import FakeAgentTools
 
 __all__ = [
     "FakeAgentTools",
@@ -22,7 +22,7 @@ __all__ = [
 
 # FakePhoenixServer is conditionally imported to avoid websockets dependency
 try:
-    from thenvoi_testing.fakes.phoenix_server import (  # noqa: F401
+    from band_testing.fakes.phoenix_server import (  # noqa: F401
         FakePhoenixServer,
     )
 

@@ -3,12 +3,12 @@
   "release-type": "python",
   "packages": {
     ".": {
-      "package-name": "thenvoi-testing-python",
+      "package-name": "band-testing-python",
       "changelog-path": "CHANGELOG.md",
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "extra-files": [
-        "src/thenvoi_testing/__init__.py",
+        "src/band_testing/__init__.py",
         {
           "type": "generic",
           "path": "pyproject.toml",

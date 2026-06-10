@@ -1,6 +1,6 @@
-# thenvoi-testing-python
+# band-testing-python
 
-Shared Python testing utilities for Thenvoi repositories. Provides fixtures, factories, and fakes for testing adapters, WebSocket clients, and API integrations.
+Shared Python testing utilities for Band repositories. Provides fixtures, factories, and fakes for testing adapters, WebSocket clients, and API integrations.
 
 ## Installation
 
@@ -8,16 +8,16 @@ Install from GitHub using uv:
 
 ```bash
 # Core package
-uv add "thenvoi-testing-python @ git+https://github.com/thenvoi/thenvoi-testing-python.git"
+uv add "band-testing-python @ git+https://github.com/band-ai/band-testing-python.git"
 
 # With WebSocket testing support
-uv add "thenvoi-testing-python[websocket] @ git+https://github.com/thenvoi/thenvoi-testing-python.git"
+uv add "band-testing-python[websocket] @ git+https://github.com/band-ai/band-testing-python.git"
 
 # With REST client testing support
-uv add "thenvoi-testing-python[rest] @ git+https://github.com/thenvoi/thenvoi-testing-python.git"
+uv add "band-testing-python[rest] @ git+https://github.com/band-ai/band-testing-python.git"
 
 # Full installation
-uv add "thenvoi-testing-python[full] @ git+https://github.com/thenvoi/thenvoi-testing-python.git"
+uv add "band-testing-python[full] @ git+https://github.com/band-ai/band-testing-python.git"
 ```
 
 ## Quick Start
@@ -46,7 +46,7 @@ def test_with_factory(factory):
 Mock data factories for creating test objects that behave like Pydantic models:
 
 ```python
-from thenvoi_testing.factories import factory
+from band_testing.factories import factory
 
 # Create mock objects with OpenAPI example defaults
 agent = factory.agent_me()
@@ -74,7 +74,7 @@ list_response = factory.list_response([room1, room2])
 Fake implementations for testing without mocking frameworks:
 
 ```python
-from thenvoi_testing.fakes import FakeAgentTools
+from band_testing.fakes import FakeAgentTools
 
 # FakeAgentTools tracks all tool calls
 tools = FakeAgentTools()
@@ -92,7 +92,7 @@ assert len(tools.participants_added) == 1
 For WebSocket testing (requires `websocket` extra):
 
 ```python
-from thenvoi_testing.fakes import FakePhoenixServer
+from band_testing.fakes import FakePhoenixServer
 
 @pytest_asyncio.fixture
 async def phoenix_server():
@@ -116,7 +116,7 @@ async def test_websocket(phoenix_server):
 Skip markers for conditional test execution:
 
 ```python
-from thenvoi_testing.markers import (
+from band_testing.markers import (
     skip_without_env,
     skip_without_envs,
     skip_with_condition,
@@ -125,7 +125,7 @@ from thenvoi_testing.markers import (
 )
 
 # Skip if environment variable not set
-requires_api = skip_without_env("THENVOI_API_KEY")
+requires_api = skip_without_env("BAND_API_KEY")
 
 @requires_api
 def test_api_call():
@@ -133,7 +133,7 @@ def test_api_call():
 
 # Skip if any of multiple env vars not set
 requires_multi_agent = skip_without_envs(
-    ["THENVOI_API_KEY", "THENVOI_API_KEY_2"],
+    ["BAND_API_KEY", "BAND_API_KEY_2"],
     reason="Both API keys required"
 )
 
@@ -152,7 +152,7 @@ def pytest_ignore_collect(collection_path):
 Create WebSocket event objects for testing handlers:
 
 ```python
-from thenvoi_testing.factories.events import (
+from band_testing.factories.events import (
     make_message_event,
     make_room_added_event,
     make_participant_added_event,
@@ -177,7 +177,7 @@ event = make_message_event(
 Utilities for integration tests against paginated APIs:
 
 ```python
-from thenvoi_testing.pagination import (
+from band_testing.pagination import (
     fetch_all_pages,
     find_item_in_pages,
     item_exists_in_pages,
@@ -203,16 +203,16 @@ Base settings class for integration tests using Pydantic Settings:
 
 ```python
 from pathlib import Path
-from thenvoi_testing.settings import ThenvoiTestSettings
+from band_testing.settings import BandTestSettings
 
-class TestSettings(ThenvoiTestSettings):
+class TestSettings(BandTestSettings):
     _env_file_path = Path(__file__).parent / ".env.test"
 
 settings = TestSettings()
 
 # Check if credentials are available
 if settings.has_api_key:
-    client = create_client(settings.thenvoi_api_key)
+    client = create_client(settings.BAND_API_KEY)
 
 if settings.has_multi_agent:
     # Both agents available for multi-agent tests
@@ -221,13 +221,13 @@ if settings.has_multi_agent:
 
 Example `.env.test`:
 ```
-THENVOI_API_KEY=your-agent-api-key
+BAND_API_KEY=your-agent-api-key
 TEST_AGENT_ID=your-agent-uuid
-THENVOI_API_KEY_2=second-agent-key
+BAND_API_KEY_2=second-agent-key
 TEST_AGENT_ID_2=second-agent-uuid
-THENVOI_API_KEY_USER=user-api-key
-THENVOI_BASE_URL=https://api.thenvoi.com
-THENVOI_WS_URL=wss://api.thenvoi.com/api/v1/socket/websocket
+BAND_API_KEY_USER=user-api-key
+BAND_BASE_URL=https://api.band.ai
+BAND_WS_URL=wss://api.band.ai/api/v1/socket/websocket
 ```
 
 ## Pytest Plugin
@@ -253,20 +253,20 @@ The `api_client` fixture provides a real REST client for integration tests:
 ```python
 def test_integration(api_client):
     if api_client is None:
-        pytest.skip("THENVOI_API_KEY not configured")
+        pytest.skip("BAND_API_KEY not configured")
 
     response = api_client.agent_api.get_agent_me()
     assert response.data.id is not None
 ```
 
-It uses `ThenvoiTestSettings` to load configuration from environment variables.
+It uses `BandTestSettings` to load configuration from environment variables.
 
 ## Development
 
 ```bash
 # Clone the repository
-git clone git@github.com:thenvoi/thenvoi-testing-python.git
-cd thenvoi-testing-python
+git clone git@github.com:band-ai/band-testing-python.git
+cd band-testing-python
 
 # Install with dev dependencies
 uv sync --extra dev
@@ -290,7 +290,7 @@ This repository uses a **main-only** branch strategy:
 To pin to a specific version:
 
 ```bash
-uv add "thenvoi-testing-python @ git+https://github.com/thenvoi/thenvoi-testing-python.git@v0.1.0"
+uv add "band-testing-python @ git+https://github.com/band-ai/band-testing-python.git@v0.1.0"
 ```
 
 ## License

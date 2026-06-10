@@ -6,9 +6,9 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from thenvoi_testing.factories import MockDataFactory
-from thenvoi_testing.fakes import FakeAgentTools
-from thenvoi_testing.streaming import MessageCreatedPayload
+from band_testing.factories import MockDataFactory
+from band_testing.fakes import FakeAgentTools
+from band_testing.streaming import MessageCreatedPayload
 
 
 class TestFakeAgentToolsFixture:

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from thenvoi_testing.pagination import (
+from band_testing.pagination import (
     fetch_all_pages,
     find_item_in_pages,
     item_exists_in_pages,
