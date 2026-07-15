@@ -33,7 +33,7 @@ full = ["band-testing-python[rest,websocket]"]
 dev = [
     "band-testing-python[full]",
     "ruff>=0.1.0",
-    "pyrefly>=0.1.0",
+    "pyrefly>=1.1.1",
     "pre-commit>=3.0.0",
 ]
 
