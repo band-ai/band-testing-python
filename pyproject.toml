@@ -18,7 +18,7 @@ classifiers = [
 dependencies = [
     "pytest>=7.0.0",
     "pytest-asyncio>=0.21.0",
-    "pydantic>=2.0.0",
+    "pydantic>=2.13.4",
     "pydantic-settings>=2.0.0",
 ]
 
